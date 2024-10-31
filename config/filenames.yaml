@@ -1,0 +1,3 @@
+referenfce: ['reference_session']
+train: ['train_session1', 'train_session2', 'train_session3']
+test: ['test_session']

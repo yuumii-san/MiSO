@@ -1,0 +1,10 @@
+input:
+  filepath: '../data/fr/'
+
+spike_data_config:
+  num_noStim_trials: [1000]
+  num_stim_trials: [0]
+  binsize: 50
+
+output:
+  filepath: '../output/binned_spike_cnt/'

@@ -1,0 +1,8 @@
+config_path_base: '../config/'
+filenames: 'filenames.yaml'
+spike_cnt_ref: 'generate_spike_count_data_ref.yaml'
+spike_cnt_train: 'generate_spike_count_data_train.yaml'
+spike_cnt_test: 'generate_spike_count_data_test.yaml'
+fa: 'fit_fa.yaml'
+cnn: 'train_cnn.yaml'
+closed_loop: 'closed_loop_experiment.yaml'

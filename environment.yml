@@ -1,0 +1,13 @@
+name: MiSO
+dependencies:
+  - pip=24.2
+  - python=3.10.15
+  - pip:
+    - matplotlib==3.9.2
+    - numpy==1.26.0
+    - pandas==2.2.3
+    - psutil==6.1.0
+    - pyyaml==6.0.2
+    - scikit-learn==1.5.2
+    - scipy==1.14.1
+    - torch==2.2.0

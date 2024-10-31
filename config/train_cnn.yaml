@@ -1,0 +1,21 @@
+input:
+  input_path_base: '../output/cnn_training_data/'
+  input_filename: 'cnn_training_data'
+  cmp_path_base: '../data/arraymap/'
+  cmp_filename: 'array_map.mat'
+  target_dimensions_ind: [1,3]
+
+cnn:
+  kernel_size: 3
+
+train:
+  train_val_test_split: [0.6, 0.2, 0.2]
+  batch_size: 32
+  num_training_epochs: 100
+  lr: 0.001
+  optimizer: 'Adam'
+  verbose: False
+
+output:
+  output_path: '../'
+  output_filename: 'cnn'
