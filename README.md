@@ -47,9 +47,9 @@ This code executes the following 8 steps:
 1. Generate binned spike count data for a reference session, which involves only no uStim trials
 2. Fit a Factor Analysis (FA) model to the reference session data to define a reference latent subspace $\Lambda_0$
 3. Generate binned spike count data for the training sessions, which involves both no uStim and uStim trials
-4. Fit FA models for each training session to obtain eash session's subspace 
+4. Fit FA models for each training session to obtain each session's subspace 
 5. Align latent subspace $\Lambda_i$ to $\Lambda_0$, obtaining the aligned latent subspace $\hat{\Lambda}_i$ and create a merged training data set from all aligned sessions
-6. Train a CNN model to obtain uStim response predictions to all 96 single electrodes
+6. Train a CNN model to obtain uStim response predictions for all 96 single electrodes
 7. Run a closed-loop optimization session with MiSO initialized with the CNN predictions 
 8. Visualize the closed-loop performance of MiSO and other baselines in the same format as Fig. 2A
 
@@ -64,21 +64,21 @@ Note that this code package is not intended to replicate the exact results in th
 ## Simplification made in this implementation
 To enable running the entire simulation on a CPU, we made several simplifications in this implementation.
 - Poisson process based spike count generation
-  - In this code, we used a Poisson process to generate noisy spiking activity as found in the brain. A Poisson process generates spiking activity independently for each neuron, whereas a population of real neurons covary together. Therefore, the generated spike count data should not in principle contain shared covariance structure between neurons, making the optimal dimensionality identified by Factor Analysis (FA) equal to 0. However, to demonstrate how MiSO works, we forced the FA model to identify a four dimensional space using the generated spike count data. This could lead to differences in performance compared to the results oresented in the paper (e.g., cases where MiSO underperforms the two other baselines).
+  - In this code, we used a Poisson process to generate noisy spiking activity as found in the brain. A Poisson process generates spiking activity independently for each neuron, whereas a population of real neurons covary together. Therefore, the generated spike count data should not in principle contain shared covariance structure between neurons, making the optimal dimensionality identified by Factor Analysis (FA) equal to 0. However, to demonstrate how MiSO works, we forced the FA model to identify a four dimensional space using the generated spike count data. This could lead to differences in performance compared to the results presented in the paper (e.g., cases where MiSO underperforms the two other baselines).
 - Single electrode uStim patterns, but not double electrodes
   - While we validated MiSO with double electrode uStim patterns, this code only supports single electrode uStim patterns, given that in this case we can provide the data for the expected firing rates induced by all uStim patterns. The large number of all double electrode uStim patterns (4,560 patterns) made it challenging to prepare the same kind of dataset. 
 - No guided sampling, which requires multiple CNN training runs
   - MiSO involves two phases to collect the CNN training data (Section 2.4). However, to enable running the simulation on a CPU machine within a short time, this code only performs the first phase with random stimulation pattern selection (Section 2.4.1). 
 - No bagging, which requires training multiple CNNs
-  - MiSO uses bagging to stablize the CNN predictions. This requires training 50 CNN models. We removed this computationally expensive process from this code and trained just one CNN using all training data.
+  - MiSO uses bagging to stabilize the CNN predictions. This requires training 50 CNN models. We removed this computationally expensive process from this code and trained just one CNN using all training data.
 - No clipped learning rate
   - While MiSO uses a clipped learning rate, this code uses a fixed learning rate throughout a session to simplify the implementation.
 
 ## Contact
 For questions, please contact Yuki Minai at yminai@andrew.cmu.edu.
 
-## Acknowledgement
-The code to fit FA model (under ./py/util/fa/) was cloned from [this repository](https://github.com/akash-uma/fa/tree/master) by Akash Umakantha.
+## Acknowledgements
+The code to fit the FA model (under ./py/util/fa/) was cloned from [this repository](https://github.com/akash-uma/fa/tree/master) by Akash Umakantha.
 
 ## Licence
 Shield: [![CC BY-NC-ND 4.0][cc-by-nc-nd-shield]][cc-by-nc-nd]
